@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segurança da Escola</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 class="titulo">SEGURANÇA E MONITORAMENTO</h1>
+
+  <div class="painel">
+    <aside class="menu">
+      <button class="botao ativo" data-target="secao1">1</button>
+      <button class="botao" data-target="secao2">2</button>
+      <button class="botao" data-target="secao3">3</button>
+    </aside>
+
+    <main class="conteudo">
+      <!-- Seção 1 -->
+      <section class="secao ativa" id="secao1">
+        <h2>SENSOR DE MOVIMENTO</h2>
+        <img src="sensor-pir.png" alt="Sensor de Movimento" class="imagem-sensor">
+        
+        <p class="descricao">
+          Esse é o nosso sensor de movimento e ele é relativamente fácil de montar e entender. 
+          Como o nome já diz, ele capta o movimento da pessoa e o LED aciona na protoboard, 
+          e na ARDUINO IDE é mostrado no monitor serial "MOVIMENTO DETECTADO" ou "SEM MOVIMENTO". 
+          Bom, é mais fácil na prática! O código está aí, agora é só testar!
+        </p>
+
+        <pre class="codigo">
+<code>
+#define SENSOR_PIR 2
+#define LED 3
+
+void setup() {
+  pinMode(SENSOR_PIR, INPUT);
+  pinMode(LED, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  bool estado_sensor = digitalRead(SENSOR_PIR);
+
+  if (estado_sensor == HIGH) {
+    digitalWrite(LED, HIGH);
+    Serial.println("MOVIMENTO DETECTADO ✓");
+  } else {
+    digitalWrite(LED, LOW);
+    Serial.println("SEM MOVIMENTO ☓");
+  }
+
+  delay(200);  // Pequeno atraso para evitar spam no Serial Monitor
+}
+</code>
+        </pre>
+      </section>
+
+      <!-- Seção 2 -->
+      <section class="secao" id="secao2">
+        <h2>DETECTOR DE FUMAÇA</h2>
+        <img src="sensor-mq2.png" alt="Detector de Fumaça" class="imagem-sensor">
+        
+        <p class="descricao">
+          Este é o nosso detector de fumaça. Em comparação com o detector de movimento, ele é um pouco mais complexo de montar, mas nada impossível!
+O dispositivo detecta a presença de gases e fumaça no ambiente e aciona um alarme sonoro e visual.
+
+Caso seja detectado gás ou fumaça na área, um LED vermelho será aceso, indicando:
+"⚠️ GÁS DETECTADO!"
+
+Se o ambiente estiver limpo, um LED verde acenderá com a mensagem:
+"✅ Ambiente Seguro"
+
+Observação: A imagem foi retirada de um site oficial.
+        </p>
+
+        <pre class="codigo">
+<code>
+/* Programa: Detector de gás e fumaça */
+
+/* Definição dos pinos */
+#define MQ_analogico A0
+#define MQ_digital 4
+#define Buzzer 5
+#define Led_Verde 6
+#define Led_Vermelho 7
+
+/* Variáveis */
+int valor_analogico;
+int valor_digital;
+
+void setup() {
+  Serial.begin(9600);
+
+  pinMode(MQ_analogico, INPUT);
+  pinMode(MQ_digital, INPUT);
+  pinMode(Buzzer, OUTPUT);
+  pinMode(Led_Verde, OUTPUT);
+  pinMode(Led_Vermelho, OUTPUT);
+
+  digitalWrite(Led_Verde, HIGH);   // começa seguro
+  digitalWrite(Led_Vermelho, LOW);
+  noTone(Buzzer);
+}
+
+void loop() {
+  valor_analogico = analogRead(MQ_analogico);
+  valor_digital = digitalRead(MQ_digital);
+
+  Serial.print("Nível detectado : ");
+  Serial.print(valor_analogico);
+  Serial.print(" || ");
+
+  if (valor_analogico > 70) {
+    digitalWrite(Led_Vermelho, HIGH);
+    digitalWrite(Led_Verde, LOW);
+    tone(Buzzer, 1000);
+    Serial.println("⚠️  GÁS DETECTADO!");
+  } else {
+    digitalWrite(Led_Vermelho, LOW);
+    digitalWrite(Led_Verde, HIGH);
+    noTone(Buzzer);
+    Serial.println("✅ Ambiente Seguro.");
+  }
+
+  delay(200);
+}
+</code>
+        </pre>
+      </section>
+
+      <!-- Seção 3 -->
+      <section class="secao" id="secao3">
+  <h2>RESULTADOS E ASSISTENTE IA 🤖</h2>
+
+  <p class="descricao">
+    Aqui estão os resultados do projeto e um assistente inteligente
+    para tirar dúvidas sobre os sensores.
+  </p>
+
+  <!-- Área da IA -->
+  <div id="respostas" class="descricao"
+       style="height:200px; overflow:auto; border:1px solid #555; padding:10px;">
+    <p>Olá! Pode perguntar algo sobre o projeto 😊</p>
+  </div>
+
+  <input type="text" id="pergunta"
+         placeholder="Digite sua pergunta..."
+         style="width:100%; padding:8px; margin-top:10px;">
+
+  <button onclick="enviar()" style="margin-top:10px;">
+    Enviar
+  </button>
+</section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="ia.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Área Restrita</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root{--bg:#f5f7fb;--card:#fff;--accent:#4f46e5}
+    body{font-family:Inter,Arial;margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center;background:var(--bg)}
+    .card{background:var(--card);padding:28px;border-radius:10px;box-shadow:0 6px 20px rgba(16,24,40,.08);width:360px}
+    h1{margin:0 0 14px;font-size:20px;color:#0f172a}
+    label{display:block;font-size:13px;color:#334155;margin-top:10px}
+    input{width:100%;padding:10px 12px;margin-top:6px;border:1px solid #e6edf3;border-radius:8px;font-size:14px}
+    .btn{margin-top:14px;background:var(--accent);color:#fff;border:none;padding:10px 12px;border-radius:8px;width:100%;cursor:pointer;font-weight:600}
+    .msg{margin-top:10px;font-size:13px;color:#ef4444;display:none}
+    .small{font-size:12px;color:#64748b;margin-top:8px;text-align:center}
+    .links{margin-top:12px;text-align:center}
+    .links a{font-size:13px;color:var(--accent);text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Entrar</h1>
+    <form id="loginForm">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="username" required>
+      <label for="pwd">Senha</label>
+      <input id="pwd" type="password" autocomplete="current-password" required>
+      <button class="btn" type="submit">Entrar</button>
+      <div class="msg" id="msg">Usuário ou senha inválidos</div>
+      <div class="small">Se tiver problemas, contate o administrador.</div>
+    </form>
+    <div class="links">
+      <!-- Página de registro (somente para testes) -->
+      <a href="register.html">Criar / Atualizar usuário (teste)</a>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

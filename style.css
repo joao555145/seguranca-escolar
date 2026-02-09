@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  color: #111;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.painel {
+  display: flex;
+  width: 85%;
+  max-width: 1200px;
+  height: 550px;
+  background: #a0a0a0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+/* Menu lateral */
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 120px;
+  background: #2b2b2b;
+  padding-left: 20px;
+  gap: 20px;
+}
+
+.botao {
+  width: 80px;
+  height: 50px;
+  background: #444;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.botao:hover {
+  background: #555;
+}
+
+.botao.ativo {
+  background: #111;
+  transform: scale(1.03);
+}
+
+/* Conteúdo */
+.conteudo {
+  flex: 1;
+  background: #b0b0b0;
+  padding: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Seções */
+.secao {
+  display: none;
+}
+
+.secao.ativa {
+  display: block;
+}
+
+.imagem-sensor {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  object-fit: contain;
+}
+
+.descricao {
+  background: #d9d9d9;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+.codigo {
+  background: #333;
+  color: #0f0;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+/* Barra de rolagem customizada */
+.conteudo::-webkit-scrollbar {
+  width: 10px;
+}
+
+.conteudo::-webkit-scrollbar-track {
+  background: #a0a0a0;
+  border-radius: 8px;
+}
+
+.conteudo::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 8px;
+}
+
+.conteudo::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
